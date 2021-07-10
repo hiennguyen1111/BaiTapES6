@@ -54,6 +54,28 @@
         onFinished: function(event, currentIndex) {
             // alert('Submited');
             console.log('abc');
+            
+        let arrInput = document.querySelectorAll("input,select");
+
+        let thongTin = {};
+        for (let i = 0; i < arrInput.length; i++) {
+            let inputTag = arrInput[i]; //Input : [id] - [value]
+            let id = inputTag.name;
+            let value = inputTag.value;
+            thongTin = { ...thongTin, [id]: value };
+         }
+
+        let content = ``;
+        let divWrapper = document.createElement("div");
+        for (let key in thongTin) {
+            content += `
+             <p>${key} : ${thongTin[key]}</p>
+             `;
+         }
+         divWrapper.style.fontSize="20px";
+         divWrapper.innerHTML = content;
+         divWrapper.id = "information";
+         document.querySelector(".content").appendChild(divWrapper);
         },
         onStepChanged: function(event, currentIndex, priorIndex) {
 
