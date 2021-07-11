@@ -1,4 +1,7 @@
-export class KhaiBao {
+import { ThongTinNguoiNhap } from "../models/ThongTin.js";
+
+export class KhaiBaoThongTin {
+    
     arrKhaiBao = [];
     constructor () {
 
@@ -40,13 +43,15 @@ export class KhaiBao {
                     <td>${thongTin.ho}</td>
                     <td>${thongTin.email}</td>
                     <td>${thongTin.soDienThoai}</td>
-                    <td>${thongTin.ngayThangNamSinh}</td>
+                    <td>${thongTin.ngay}</td>
+                    <td>${thongTin.thang}</td>
+                    <td>${thongTin.nam}</td>
                     <td>${thongTin.diaChi}</td>
                     <td>${thongTin.thongTinDiChuyen}</td>
                     <td>${thongTin.loaiNhiem ? 'F0' : 'F1'}</td>
                     <td>
-                        <button onclick="xoaMonAn('${thongTin.soDienThoai}')">Xoá</button>
-                        <button data-toggle="modal" data-target="#exampleModal" onclick="chinhSua('${thongTin.soDienThoai}')" >Chỉnh sửa</button>
+                        <button onclick="xoaThongTin('${thongTin.phoneNumber}')">Xoá</button>
+                        <button data-toggle="modal" data-target="#exampleModal" onclick="chinhSua('${thongTin.phoneNumber}')" >Chỉnh sửa</button>
                     </td>
                 </tr>
             `
@@ -63,18 +68,18 @@ export class KhaiBao {
         document.getElementById(idTable).innerHTML = content;
     }
 
-    // luuStorage = () => {
-    //     //Biến dữ liệu arrMenu thành chuỗi
-    //     let stringTin = JSON.stringify(this.arrThongTin);
-    //     //Lưu chuỗi vào localstorage
-    //     localStorage.setItem('thongTinNguoiDienForm', stringMenu);
+    luuStorage = () => {
+        //Biến dữ liệu arrMenu thành chuỗi
+        let stringTin = JSON.stringify(this.arrThongTin);
+        //Lưu chuỗi vào localstorage
+        localStorage.setItem('thongTinNguoiDienForm', stringMenu);
 
-    // }
-    // layStorage = () => {
-    //     //Kiểm tra trong localstorage có dữ liệu thì lấy dữ liệu từ localstorage ra gán cho thuộc tính menu
-    //     if (localStorage.getItem('thongTinNguoiDienForm')) {
-    //         let stringMenu = localStorage.getItem('thongTinNguoiDienForm');
-    //         this.arrThongTin = JSON.parse(stringMenu);
-    //     }
-    // }
+    }
+    layStorage = () => {
+        //Kiểm tra trong localstorage có dữ liệu thì lấy dữ liệu từ localstorage ra gán cho thuộc tính menu
+        if (localStorage.getItem('thongTinNguoiDienForm')) {
+            let stringMenu = localStorage.getItem('thongTinNguoiDienForm');
+            this.arrThongTin = JSON.parse(stringMenu);
+        }
+    }
 }
